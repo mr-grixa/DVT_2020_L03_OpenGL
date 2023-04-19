@@ -40,9 +40,6 @@
             this.radioButtonSpin = new System.Windows.Forms.RadioButton();
             this.radioButtonCube = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton_perspective = new System.Windows.Forms.RadioButton();
-            this.radioButton_ortogonal = new System.Windows.Forms.RadioButton();
             this.label7 = new System.Windows.Forms.Label();
             this.numericUpDownRZ = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownRY = new System.Windows.Forms.NumericUpDown();
@@ -50,23 +47,20 @@
             this.numericUpDownZ = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownY = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownX = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonLoad = new System.Windows.Forms.Button();
             this.UpDownCout = new System.Windows.Forms.NumericUpDown();
             this.buttonGenerate = new System.Windows.Forms.Button();
             this.openGLControl1 = new SharpGL.OpenGLControl();
+            this.radioButton_Dot = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.groupBox2.SuspendLayout();
-            this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownZ)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownX)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UpDownCout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl1)).BeginInit();
             this.SuspendLayout();
@@ -144,7 +138,7 @@
             // radioButtonSpin
             // 
             this.radioButtonSpin.AutoSize = true;
-            this.radioButtonSpin.Location = new System.Drawing.Point(6, 42);
+            this.radioButtonSpin.Location = new System.Drawing.Point(75, 19);
             this.radioButtonSpin.Name = "radioButtonSpin";
             this.radioButtonSpin.Size = new System.Drawing.Size(68, 17);
             this.radioButtonSpin.TabIndex = 39;
@@ -165,47 +159,15 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.radioButton_Dot);
             this.groupBox2.Controls.Add(this.radioButtonSpin);
             this.groupBox2.Controls.Add(this.radioButtonCube);
-            this.groupBox2.Location = new System.Drawing.Point(150, 76);
+            this.groupBox2.Location = new System.Drawing.Point(17, 76);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(131, 68);
+            this.groupBox2.Size = new System.Drawing.Size(264, 51);
             this.groupBox2.TabIndex = 66;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Фигура";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.radioButton_perspective);
-            this.groupBox1.Controls.Add(this.radioButton_ortogonal);
-            this.groupBox1.Location = new System.Drawing.Point(13, 76);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(130, 68);
-            this.groupBox1.TabIndex = 65;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Проекция";
-            // 
-            // radioButton_perspective
-            // 
-            this.radioButton_perspective.AutoSize = true;
-            this.radioButton_perspective.Location = new System.Drawing.Point(7, 42);
-            this.radioButton_perspective.Name = "radioButton_perspective";
-            this.radioButton_perspective.Size = new System.Drawing.Size(104, 17);
-            this.radioButton_perspective.TabIndex = 37;
-            this.radioButton_perspective.TabStop = true;
-            this.radioButton_perspective.Text = "Перспективная";
-            this.radioButton_perspective.UseVisualStyleBackColor = true;
-            // 
-            // radioButton_ortogonal
-            // 
-            this.radioButton_ortogonal.AutoSize = true;
-            this.radioButton_ortogonal.Location = new System.Drawing.Point(7, 19);
-            this.radioButton_ortogonal.Name = "radioButton_ortogonal";
-            this.radioButton_ortogonal.Size = new System.Drawing.Size(103, 17);
-            this.radioButton_ortogonal.TabIndex = 36;
-            this.radioButton_ortogonal.TabStop = true;
-            this.radioButton_ortogonal.Text = "Ортогональная";
-            this.radioButton_ortogonal.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
@@ -339,37 +301,6 @@
             this.numericUpDownX.Size = new System.Drawing.Size(52, 20);
             this.numericUpDownX.TabIndex = 59;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(17, 319);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 13);
-            this.label2.TabIndex = 58;
-            this.label2.Text = "Угол обзора";
-            // 
-            // numericUpDown2
-            // 
-            this.numericUpDown2.Location = new System.Drawing.Point(96, 317);
-            this.numericUpDown2.Maximum = new decimal(new int[] {
-            179,
-            0,
-            0,
-            0});
-            this.numericUpDown2.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(53, 20);
-            this.numericUpDown2.TabIndex = 57;
-            this.numericUpDown2.Value = new decimal(new int[] {
-            120,
-            0,
-            0,
-            0});
-            // 
             // buttonSave
             // 
             this.buttonSave.Location = new System.Drawing.Point(150, 44);
@@ -432,6 +363,17 @@
             this.openGLControl1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.openGLControl1_MouseMove);
             this.openGLControl1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.openGLControl1_MouseUp);
             // 
+            // radioButton_Dot
+            // 
+            this.radioButton_Dot.AutoSize = true;
+            this.radioButton_Dot.Location = new System.Drawing.Point(169, 19);
+            this.radioButton_Dot.Name = "radioButton_Dot";
+            this.radioButton_Dot.Size = new System.Drawing.Size(55, 17);
+            this.radioButton_Dot.TabIndex = 40;
+            this.radioButton_Dot.TabStop = true;
+            this.radioButton_Dot.Text = "Точка";
+            this.radioButton_Dot.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -446,7 +388,6 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.numericUpDownRZ);
             this.Controls.Add(this.numericUpDownRY);
@@ -454,26 +395,21 @@
             this.Controls.Add(this.numericUpDownZ);
             this.Controls.Add(this.numericUpDownY);
             this.Controls.Add(this.numericUpDownX);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.numericUpDown2);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.buttonLoad);
             this.Controls.Add(this.UpDownCout);
             this.Controls.Add(this.buttonGenerate);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Щербинин Григорий 201-325";
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownZ)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownY)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownX)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UpDownCout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl1)).EndInit();
             this.ResumeLayout(false);
@@ -494,9 +430,6 @@
         private System.Windows.Forms.RadioButton radioButtonSpin;
         private System.Windows.Forms.RadioButton radioButtonCube;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton_perspective;
-        private System.Windows.Forms.RadioButton radioButton_ortogonal;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown numericUpDownRZ;
         private System.Windows.Forms.NumericUpDown numericUpDownRY;
@@ -504,13 +437,12 @@
         private System.Windows.Forms.NumericUpDown numericUpDownZ;
         private System.Windows.Forms.NumericUpDown numericUpDownY;
         private System.Windows.Forms.NumericUpDown numericUpDownX;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonLoad;
         private System.Windows.Forms.NumericUpDown UpDownCout;
         private System.Windows.Forms.Button buttonGenerate;
         private SharpGL.OpenGLControl openGLControl1;
+        private System.Windows.Forms.RadioButton radioButton_Dot;
     }
 }
 

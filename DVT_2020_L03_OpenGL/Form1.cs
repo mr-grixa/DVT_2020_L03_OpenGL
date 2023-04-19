@@ -18,13 +18,14 @@ namespace DVT_2020_L03_OpenGL
         public Form1()
         {
             InitializeComponent();
+            radioButtonCube.Checked = true;
         }
         OpenGL gl;
         private void openGLControl1_OpenGLDraw(object sender, RenderEventArgs args) 
         {
             // Создаем экземпляр
             gl = this.openGLControl1.OpenGL;
-            // Очистка экрана и буфера глубин
+             // Очистка экрана и буфера глубин
             gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
             // Сбрасываем модельно-видовую матрицу
             gl.LoadIdentity();
@@ -45,7 +46,7 @@ namespace DVT_2020_L03_OpenGL
             {
                 foreach(Point3D point in points)
                 {
-                    gl.Color(point.x,point.y,point.z);
+                    gl.Color(1-point.x,1-point.y,1-point.z);
                     gl.Vertex(point.x,point.y,point.z);
                 }
             }
@@ -102,9 +103,13 @@ namespace DVT_2020_L03_OpenGL
             {
                 points = Generate.RandomPoints((int)UpDownCout.Value);
             }
-            else
+            else if (radioButtonSpin.Checked)
             {
                 points = Generate.SpinPoints((int)UpDownCout.Value);
+            }
+            else if (radioButton_Dot.Checked)
+            {
+                points = Generate.DotPoints((int)UpDownCout.Value);
             }
             points = Generate.RandomaisePoints(points, (double)trackBar1.Value / 100);
             Plotnost();

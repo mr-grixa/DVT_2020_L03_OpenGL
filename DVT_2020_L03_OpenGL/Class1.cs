@@ -31,6 +31,15 @@ namespace DVT_2020_L03_OpenGL
     }
     internal static class Generate
     {
+        public static Point3D[] DotPoints(int numPoints)
+        {
+            Point3D[] points = new Point3D[numPoints];
+            for (int i = 0; i < numPoints; i++)
+            {
+                points[i] = new Point3D(0,0,0);
+            }
+            return points;
+        }
         public static Point3D[] RandomPoints(int numPoints)
         {
             Random random = new Random();
