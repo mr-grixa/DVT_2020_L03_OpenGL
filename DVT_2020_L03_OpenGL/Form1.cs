@@ -10,11 +10,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using SharpGL;
+using SharpGL.Enumerations;
 
 namespace DVT_2020_L03_OpenGL
 {
     public partial class Form1 : Form
     {
+        Point3D[] points;
+        int[,,] voxels;
+        int[,] histogramXY;
         public Form1()
         {
             InitializeComponent();
@@ -25,10 +29,14 @@ namespace DVT_2020_L03_OpenGL
         {
             // Создаем экземпляр
             gl = this.openGLControl1.OpenGL;
-             // Очистка экрана и буфера глубин
+
+            // Очистка экрана и буфера глубин
             gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
             // Сбрасываем модельно-видовую матрицу
+            gl.MatrixMode(MatrixMode.Projection);
             gl.LoadIdentity();
+            gl.Perspective((double)numericUpDown_Fov.Value, (double)openGLControl1.Width / (double)openGLControl1.Height, 0.01, 100);
+
             // Двигаем перо вглубь экрана
             double camX = (double)numericUpDownX.Value;
             double camY = (double)numericUpDownY.Value;
@@ -41,27 +49,78 @@ namespace DVT_2020_L03_OpenGL
             gl.Rotate(angleX, 1.0f, 0.0f, 0.0f);
             gl.Rotate(angleY, 0.0f, 1.0f, 0.0f);
             gl.Rotate(angleZ, 0.0f, 0.0f, 1.0f);
-            gl.Begin(OpenGL.GL_POINTS);
-            if (points !=null)
+
+
+            // включаем режим смешивания
+            gl.Enable(OpenGL.GL_BLEND);
+
+            if (checkBox_plane.Checked && histogramXY != null)
             {
-                foreach(Point3D point in points)
+                Draw.Histogram(gl, histogramXY);
+            }
+            if (checkBox_voxel.Checked && voxels != null)
+            {          
+                Draw.Voxel(gl, voxels);
+            }
+            if (checkBox_dot.Checked)
+            {
+                gl.Begin(OpenGL.GL_POINTS);
+                if (points != null)
                 {
-                    gl.Color(1-point.x,1-point.y,1-point.z);
-                    gl.Vertex(point.x,point.y,point.z);
+                    foreach (Point3D point in points)
+                    {
+                        gl.Color(1 - point.x, 1 - point.y, 1 - point.z);
+                        gl.Vertex(point.x, point.y, point.z);
+                    }
                 }
             }
+
+            gl.Perspective((double)numericUpDown_Fov.Value, (double)openGLControl1.Width / (double)openGLControl1.Height, 0.01, 100);
+
             // Завершаем работу
             gl.End();
             
         }
 
+        
+        public void Voxel()
+        {
+            voxels = new int[10,10,10];
+            foreach (Point3D point in points)
+            {
+                int x = (int)((point.x + 1) * 5);
+                int y = (int)((point.y + 1) * 5);
+                int z = (int)((point.z + 1) * 5);
+                if (x<10&&x>=0&&
+                    y < 10 && y >= 0 &&
+                    z < 10 && z >= 0)
+                {
+                    voxels[x, y, z]++;
+                }          
+            }
+        }
+
+        public void Histogram()
+        {
+            histogramXY = new int[10, 10];
+            foreach (Point3D point in points)
+            {
+                int x = (int)((point.x + 1) * 5);
+                int y = (int)((point.y + 1) * 5);
+                if (x < 10 && x >= 0 &&
+                    y < 10 && y >= 0)
+                {
+                    histogramXY[x, y]++;
+                }
+            }
+        }
         private void buttonLoad_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Табличные данные (*.CSV)|*.CSV";
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                List<Point3D> data = new List<Point3D>();
+                List<Point3D> pointsL = new List<Point3D>();
                 using (StreamReader reader = new StreamReader(openFileDialog.FileName))
                 {
                     string line;
@@ -71,10 +130,13 @@ namespace DVT_2020_L03_OpenGL
                         double x = double.Parse(values[0]);
                         double y = double.Parse(values[1]);
                         double z = double.Parse(values[2]);
-                        data.Add(new Point3D(x, y, z));
+                        pointsL.Add(new Point3D(x, y, z));
                     }
                 }
+                points = pointsL.ToArray();
             }
+            Voxel();
+            Histogram();
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
@@ -96,7 +158,7 @@ namespace DVT_2020_L03_OpenGL
                 }
             }
         }
-        Point3D[] points;
+
         private void buttonGenerate_Click(object sender, EventArgs e)
         {
             if (radioButtonCube.Checked)
@@ -112,7 +174,8 @@ namespace DVT_2020_L03_OpenGL
                 points = Generate.DotPoints((int)UpDownCout.Value);
             }
             points = Generate.RandomaisePoints(points, (double)trackBar1.Value / 100);
-            Plotnost();
+            Voxel();
+            Histogram();
         }
         private Point startPoint;
         private decimal RX;
@@ -166,21 +229,6 @@ namespace DVT_2020_L03_OpenGL
                 }
             }
         }
-        private void Plotnost()
-        {
-            int[,,] ints = new int[10,10,10];
-            foreach (Point3D point in points) 
-            {
-                if (Math.Abs(point.x) <= 1&&
-                    Math.Abs(point.y) <= 1 &&
-                    Math.Abs(point.z) <= 1)
-                {
-                    ints[(int)point.x * 5 + 5,
-                         (int)point.z * 5 + 5,
-                         (int)point.z * 5 + 5]++;
-                }
-                
-            }
-        }
+
     }
 }

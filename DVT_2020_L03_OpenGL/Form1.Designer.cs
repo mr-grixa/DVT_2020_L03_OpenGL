@@ -40,6 +40,7 @@
             this.radioButtonSpin = new System.Windows.Forms.RadioButton();
             this.radioButtonCube = new System.Windows.Forms.RadioButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radioButton_Dot = new System.Windows.Forms.RadioButton();
             this.label7 = new System.Windows.Forms.Label();
             this.numericUpDownRZ = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownRY = new System.Windows.Forms.NumericUpDown();
@@ -52,7 +53,11 @@
             this.UpDownCout = new System.Windows.Forms.NumericUpDown();
             this.buttonGenerate = new System.Windows.Forms.Button();
             this.openGLControl1 = new SharpGL.OpenGLControl();
-            this.radioButton_Dot = new System.Windows.Forms.RadioButton();
+            this.label2 = new System.Windows.Forms.Label();
+            this.numericUpDown_Fov = new System.Windows.Forms.NumericUpDown();
+            this.checkBox_dot = new System.Windows.Forms.CheckBox();
+            this.checkBox_voxel = new System.Windows.Forms.CheckBox();
+            this.checkBox_plane = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRZ)).BeginInit();
@@ -63,6 +68,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownX)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.UpDownCout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Fov)).BeginInit();
             this.SuspendLayout();
             // 
             // label_track
@@ -164,10 +170,21 @@
             this.groupBox2.Controls.Add(this.radioButtonCube);
             this.groupBox2.Location = new System.Drawing.Point(17, 76);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(264, 51);
+            this.groupBox2.Size = new System.Drawing.Size(264, 44);
             this.groupBox2.TabIndex = 66;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Фигура";
+            // 
+            // radioButton_Dot
+            // 
+            this.radioButton_Dot.AutoSize = true;
+            this.radioButton_Dot.Location = new System.Drawing.Point(169, 19);
+            this.radioButton_Dot.Name = "radioButton_Dot";
+            this.radioButton_Dot.Size = new System.Drawing.Size(55, 17);
+            this.radioButton_Dot.TabIndex = 40;
+            this.radioButton_Dot.TabStop = true;
+            this.radioButton_Dot.Text = "Точка";
+            this.radioButton_Dot.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
@@ -325,7 +342,7 @@
             // 
             this.UpDownCout.Location = new System.Drawing.Point(150, 17);
             this.UpDownCout.Maximum = new decimal(new int[] {
-            100000,
+            500000,
             0,
             0,
             0});
@@ -333,7 +350,7 @@
             this.UpDownCout.Size = new System.Drawing.Size(120, 20);
             this.UpDownCout.TabIndex = 53;
             this.UpDownCout.Value = new decimal(new int[] {
-            5000,
+            50000,
             0,
             0,
             0});
@@ -363,22 +380,79 @@
             this.openGLControl1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.openGLControl1_MouseMove);
             this.openGLControl1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.openGLControl1_MouseUp);
             // 
-            // radioButton_Dot
+            // label2
             // 
-            this.radioButton_Dot.AutoSize = true;
-            this.radioButton_Dot.Location = new System.Drawing.Point(169, 19);
-            this.radioButton_Dot.Name = "radioButton_Dot";
-            this.radioButton_Dot.Size = new System.Drawing.Size(55, 17);
-            this.radioButton_Dot.TabIndex = 40;
-            this.radioButton_Dot.TabStop = true;
-            this.radioButton_Dot.Text = "Точка";
-            this.radioButton_Dot.UseVisualStyleBackColor = true;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(16, 305);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(71, 13);
+            this.label2.TabIndex = 77;
+            this.label2.Text = "Угол обзора";
+            // 
+            // numericUpDown_Fov
+            // 
+            this.numericUpDown_Fov.Location = new System.Drawing.Point(95, 303);
+            this.numericUpDown_Fov.Maximum = new decimal(new int[] {
+            179,
+            0,
+            0,
+            0});
+            this.numericUpDown_Fov.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_Fov.Name = "numericUpDown_Fov";
+            this.numericUpDown_Fov.Size = new System.Drawing.Size(53, 20);
+            this.numericUpDown_Fov.TabIndex = 76;
+            this.numericUpDown_Fov.Value = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            // 
+            // checkBox_dot
+            // 
+            this.checkBox_dot.AutoSize = true;
+            this.checkBox_dot.Checked = true;
+            this.checkBox_dot.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBox_dot.Location = new System.Drawing.Point(17, 122);
+            this.checkBox_dot.Name = "checkBox_dot";
+            this.checkBox_dot.Size = new System.Drawing.Size(56, 17);
+            this.checkBox_dot.TabIndex = 78;
+            this.checkBox_dot.Text = "Точки";
+            this.checkBox_dot.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_voxel
+            // 
+            this.checkBox_voxel.AutoSize = true;
+            this.checkBox_voxel.Location = new System.Drawing.Point(102, 122);
+            this.checkBox_voxel.Name = "checkBox_voxel";
+            this.checkBox_voxel.Size = new System.Drawing.Size(69, 17);
+            this.checkBox_voxel.TabIndex = 79;
+            this.checkBox_voxel.Text = "Воксили";
+            this.checkBox_voxel.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_plane
+            // 
+            this.checkBox_plane.AutoSize = true;
+            this.checkBox_plane.Location = new System.Drawing.Point(200, 122);
+            this.checkBox_plane.Name = "checkBox_plane";
+            this.checkBox_plane.Size = new System.Drawing.Size(81, 17);
+            this.checkBox_plane.TabIndex = 80;
+            this.checkBox_plane.Text = "Плоскость";
+            this.checkBox_plane.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(914, 450);
+            this.Controls.Add(this.checkBox_plane);
+            this.Controls.Add(this.checkBox_voxel);
+            this.Controls.Add(this.checkBox_dot);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.numericUpDown_Fov);
             this.Controls.Add(this.openGLControl1);
             this.Controls.Add(this.label_track);
             this.Controls.Add(this.label6);
@@ -412,6 +486,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownX)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.UpDownCout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_Fov)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -443,6 +518,11 @@
         private System.Windows.Forms.Button buttonGenerate;
         private SharpGL.OpenGLControl openGLControl1;
         private System.Windows.Forms.RadioButton radioButton_Dot;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown numericUpDown_Fov;
+        private System.Windows.Forms.CheckBox checkBox_dot;
+        private System.Windows.Forms.CheckBox checkBox_voxel;
+        private System.Windows.Forms.CheckBox checkBox_plane;
     }
 }
 

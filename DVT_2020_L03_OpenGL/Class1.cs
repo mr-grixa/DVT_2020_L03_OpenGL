@@ -1,5 +1,7 @@
-﻿using System;
+﻿using SharpGL;
+using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -7,10 +9,6 @@ using System.Threading.Tasks;
 
 namespace DVT_2020_L03_OpenGL
 {
-    internal static class Data
-    {
-    }
-
     internal class Point3D
     {
         public double x;
@@ -29,6 +27,107 @@ namespace DVT_2020_L03_OpenGL
             return XYZ;
         }
     }
+
+    internal static class Draw
+    {
+        public static void Cube(OpenGL gl,double x, double y, double z, double size)
+        {
+            double halfSize = size / 2;
+
+            gl.Begin(OpenGL.GL_QUADS);
+
+            //front face
+            gl.Vertex(x - halfSize, y - halfSize, z + halfSize);
+            gl.Vertex(x + halfSize, y - halfSize, z + halfSize);
+            gl.Vertex(x + halfSize, y + halfSize, z + halfSize);
+            gl.Vertex(x - halfSize, y + halfSize, z + halfSize);
+
+            //back face
+            gl.Vertex(x - halfSize, y - halfSize, z - halfSize);
+            gl.Vertex(x - halfSize, y + halfSize, z - halfSize);
+            gl.Vertex(x + halfSize, y + halfSize, z - halfSize);
+            gl.Vertex(x + halfSize, y - halfSize, z - halfSize);
+
+            //top face
+            gl.Vertex(x - halfSize, y + halfSize, z - halfSize);
+            gl.Vertex(x - halfSize, y + halfSize, z + halfSize);
+            gl.Vertex(x + halfSize, y + halfSize, z + halfSize);
+            gl.Vertex(x + halfSize, y + halfSize, z - halfSize);
+
+            //bottom face
+            gl.Vertex(x - halfSize, y - halfSize, z - halfSize);
+            gl.Vertex(x + halfSize, y - halfSize, z - halfSize);
+            gl.Vertex(x + halfSize, y - halfSize, z + halfSize);
+            gl.Vertex(x - halfSize, y - halfSize, z + halfSize);
+
+            //left face
+            gl.Vertex(x - halfSize, y - halfSize, z - halfSize);
+            gl.Vertex(x - halfSize, y + halfSize, z - halfSize);
+            gl.Vertex(x - halfSize, y + halfSize, z + halfSize);
+            gl.Vertex(x - halfSize, y - halfSize, z + halfSize);
+
+            //right face
+            gl.Vertex(x + halfSize, y - halfSize, z - halfSize);
+            gl.Vertex(x + halfSize, y + halfSize, z - halfSize);
+            gl.Vertex(x + halfSize, y + halfSize, z + halfSize);
+            gl.Vertex(x + halfSize, y - halfSize, z + halfSize);
+
+            gl.End();
+        }
+
+        public static void Voxel(OpenGL gl, int[,,] voxels)
+        {
+            IEnumerable<int> colNumbs = voxels.Cast<int>();
+            double max = colNumbs.Max();
+            for (int x = 0; x<10; x++)
+            {
+                for (int y = 0; y < 10; y++)
+                {
+                    for (int z = 0; z < 10; z++)
+                    {
+                        gl.Color((double)x / 10, (double)y / 10, (double)z / 10);
+
+                        Cube(gl, ((double)x - 4.5) / 5,
+                            ((double)y - 4.5) / 5,
+                            ((double)z - 4.5) / 5,
+                            (((double)voxels[x,y,z]/ max) * 0.2f));
+                    }
+                }
+            }
+        }
+
+        public static void Histogram(OpenGL gl, int[,] histogramXY)
+        {
+            IEnumerable<int> colNumbs = histogramXY.Cast<int>();
+            double max = colNumbs.Max();
+            gl.Begin(OpenGL.GL_QUADS);
+            for (int x = 0; x < 9; x++)
+            {
+                for (int y = 0; y < 9; y++)
+                {
+                    gl.Color((double)histogramXY[x, y] / max, 1 - (double)histogramXY[x, y] / max, 0.5);
+                    gl.Vertex(((double)x - 4.5) / 5,
+                        ((double)y - 4.5) / 5,
+                        ((double)histogramXY[x, y] / max) + 0.5);
+                    gl.Color((double)histogramXY[x+1, y] / max, 1 - (double)histogramXY[x+1, y ] / max, 0.5);
+                    gl.Vertex(((double)x - 3.5) / 5,
+                        ((double)y - 4.5) / 5,
+                        ((double)histogramXY[x+1, y] / max) + 0.5);
+                    gl.Color((double)histogramXY[x+1, y + 1] / max, 1 - (double)histogramXY[x+1, y + 1] / max, 0.5);
+                    gl.Vertex(((double)x - 3.5) / 5,
+                        ((double)y - 3.5) / 5,
+                        ((double)histogramXY[x + 1, y + 1] / max) + 0.5);
+                    gl.Color((double)histogramXY[x, y + 1] / max, 1- (double)histogramXY[x, y + 1] / max, 0.5);
+                    gl.Vertex(((double)x - 4.5) / 5,
+                        ((double)y - 3.5) / 5,
+                        ((double)histogramXY[x, y + 1] / max)+0.5);
+                }
+            }
+            gl.End();
+        }
+
+    }
+
     internal static class Generate
     {
         public static Point3D[] DotPoints(int numPoints)
