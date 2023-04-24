@@ -21,11 +21,6 @@ namespace DVT_2020_L03_OpenGL
             this.z = z;          
         }
 
-        public double[] xyz()
-        {
-            double [] XYZ = new double[3] { x, y, z};
-            return XYZ;
-        }
     }
 
     internal static class Draw

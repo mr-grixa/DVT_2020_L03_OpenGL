@@ -58,6 +58,7 @@
             this.checkBox_dot = new System.Windows.Forms.CheckBox();
             this.checkBox_voxel = new System.Windows.Forms.CheckBox();
             this.checkBox_plane = new System.Windows.Forms.CheckBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRZ)).BeginInit();
@@ -523,6 +524,7 @@
         private System.Windows.Forms.CheckBox checkBox_dot;
         private System.Windows.Forms.CheckBox checkBox_voxel;
         private System.Windows.Forms.CheckBox checkBox_plane;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 
