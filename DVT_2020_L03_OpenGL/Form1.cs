@@ -24,16 +24,19 @@ namespace DVT_2020_L03_OpenGL
             InitializeComponent();
             radioButtonCube.Checked = true;
         }
+        OpenGL gl;
         private void openGLControl1_OpenGLDraw(object sender, RenderEventArgs args) 
         {
             // Создаем экземпляр
-            OpenGL gl = this.openGLControl1.OpenGL;
+            gl = this.openGLControl1.OpenGL;
 
             // Очистка экрана и буфера глубин
             gl.Clear(OpenGL.GL_COLOR_BUFFER_BIT | OpenGL.GL_DEPTH_BUFFER_BIT);
             // Сбрасываем модельно-видовую матрицу
             gl.MatrixMode(MatrixMode.Projection);
             gl.LoadIdentity();
+
+
             gl.Perspective((double)numericUpDown_Fov.Value, (double)openGLControl1.Width / (double)openGLControl1.Height, 0.01, 100);
 
             // Двигаем перо вглубь экрана
@@ -74,8 +77,7 @@ namespace DVT_2020_L03_OpenGL
                 }
             }
 
-            gl.Perspective((double)numericUpDown_Fov.Value, (double)openGLControl1.Width / (double)openGLControl1.Height, 0.01, 100);
-
+            
             // Завершаем работу
             gl.End();
             
@@ -133,9 +135,10 @@ namespace DVT_2020_L03_OpenGL
                     }
                 }
                 points = pointsL.ToArray();
+                Voxel();
+                Histogram();
             }
-            Voxel();
-            Histogram();
+
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
